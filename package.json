@@ -1,0 +1,10 @@
+{
+  "name": "content-os-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev.mjs",
+    "build": "node build.mjs"
+  }
+}

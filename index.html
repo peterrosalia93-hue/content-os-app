@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content OS MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <p class="eyebrow">Content OS MVP</p>
+          <h1>Local dashboard for idea to draft to approval to publish</h1>
+          <p class="muted">
+            Manual-first operating system for content planning. Local-only storage. No live posting integrations.
+          </p>
+        </div>
+
+        <div class="metric-grid" id="metricGrid"></div>
+
+        <div class="sidebar-actions">
+          <button id="newItemButton">New content item</button>
+          <button class="secondary" id="generatePackButton">Generate daily pack</button>
+        </div>
+
+        <section class="panel queue-card">
+          <div class="section-heading">
+            <h2>Approval queue</h2>
+            <span id="queueCount">0 active</span>
+          </div>
+          <div class="queue-list" id="approvalQueue"></div>
+        </section>
+      </aside>
+
+      <main class="main-panel">
+        <div class="topbar">
+          <div class="tabs">
+            <button class="active" data-view="pipeline">Pipeline</button>
+            <button data-view="planner">Weekly planner</button>
+            <button data-view="packs">Daily pack</button>
+          </div>
+          <p class="muted">Stored in browser localStorage</p>
+        </div>
+
+        <section id="pipelineView" class="view active">
+          <div class="content-grid">
+            <div class="pipeline-board" id="pipelineBoard"></div>
+            <section class="panel editor-panel">
+              <div class="section-heading">
+                <h2 id="editorTitle">Edit item</h2>
+                <span>Content object</span>
+              </div>
+              <form id="itemForm" class="form-grid">
+                <label>Title<input name="title" required /></label>
+                <label>Pillar<input name="pillar" /></label>
+                <label>Stage<select name="stage"></select></label>
+                <label>Approval status<select name="approvalStatus"></select></label>
+                <label>Platforms<input name="platformTargets" placeholder="Instagram, X, TikTok" /></label>
+                <label>Objective<input name="objective" /></label>
+                <label>Audience<input name="audience" /></label>
+                <label>Source type<input name="sourceType" /></label>
+                <label class="full-span">Source link<input name="sourceLink" /></label>
+                <label class="full-span">Hook<textarea name="hook" rows="3"></textarea></label>
+                <label class="full-span">Body<textarea name="body" rows="5"></textarea></label>
+                <label>CTA<input name="cta" /></label>
+                <label>Visual needs<input name="visualNeeds" /></label>
+                <label class="full-span">Risk notes<textarea name="riskNotes" rows="3"></textarea></label>
+                <div class="editor-actions full-span">
+                  <button type="submit">Save item</button>
+                  <button type="button" class="secondary" id="resetFormButton">Reset form</button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </section>
+
+        <section id="plannerView" class="view">
+          <div class="planner-layout">
+            <article class="panel weekly-card">
+              <div class="section-heading">
+                <h2>Weekly content calendar</h2>
+                <span>Operating rhythm</span>
+              </div>
+              <div class="weekly-grid">
+                <label class="full-span">Weekly thesis<textarea id="weeklyThesis" rows="3"></textarea></label>
+                <label>Priority projects<textarea id="priorityProjects" rows="4"></textarea></label>
+                <label>Approval checkpoints<textarea id="approvalCheckpoints" rows="4"></textarea></label>
+                <label class="full-span">Reuse opportunities<textarea id="reuseOpportunities" rows="3"></textarea></label>
+              </div>
+            </article>
+            <div class="planner-grid" id="plannerGrid"></div>
+          </div>
+        </section>
+
+        <section id="packsView" class="view">
+          <div class="pack-layout">
+            <article class="panel pack-card big">
+              <div class="section-heading">
+                <h2>Daily content pack</h2>
+                <span id="packDate">Not generated yet</span>
+              </div>
+              <div id="packSummary" class="empty-card">Generate a daily pack from your most recent items.</div>
+            </article>
+            <article class="panel pack-card">
+              <div class="section-heading"><h2>Short-form assets</h2><span id="shortCount">0</span></div>
+              <div id="shortsList" class="pack-stack"></div>
+            </article>
+            <article class="panel pack-card">
+              <div class="section-heading"><h2>Authority post</h2><span id="authorityPlatform">—</span></div>
+              <div id="authorityPost" class="empty-card">No pack yet.</div>
+            </article>
+            <article class="panel pack-card">
+              <div class="section-heading"><h2>Build in public</h2><span id="buildProject">—</span></div>
+              <div id="buildPost" class="empty-card">No pack yet.</div>
+            </article>
+            <article class="panel pack-card">
+              <div class="section-heading"><h2>Approval carryover</h2><span id="carryCount">0</span></div>
+              <div id="carryList" class="pack-stack"></div>
+            </article>
+            <article class="panel pack-card">
+              <div class="section-heading"><h2>Pack history</h2><span id="packHistoryCount">0</span></div>
+              <div id="packHistory" class="pack-stack"></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
